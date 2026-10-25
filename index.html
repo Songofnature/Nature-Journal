@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature Journal | My Observations</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': '#FDFBF7',      /* Warm off-white */
+                        'leaf': '#10B981',       /* Vibrant emerald/leaf green */
+                        'forest': '#15803D',     /* Vibrant forest green */
+                        'earth': '#D97706',      /* Warm earthy tone */
+                        'ink': '#064E3B',        /* Very dark green-black for text */
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['"Inter"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Subtle paper texture background */
+        body {
+            background-color: #FDFBF7;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            color: #2C352D;
+        }
+
+        /* Masonry Gallery Styles */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Image hover effect */
+        .img-hover-zoom {
+            transition: transform 0.5s ease;
+        }
+        .img-hover-container:hover .img-hover-zoom {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-ink">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full top-0 bg-paper/90 backdrop-blur-sm z-50 border-b border-leaf/20">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-serif text-2xl text-forest tracking-wide font-semibold">
+                Nature Journal
+            </a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-forest">
+                <a href="#about" class="hover:text-leaf transition-colors">About</a>
+                <a href="#gallery" class="hover:text-leaf transition-colors">Gallery</a>
+                <a href="#entries" class="hover:text-leaf transition-colors">Entries</a>
+            </nav>
+            <!-- Mobile Menu Button (visual only for mockup) -->
+            <button class="md:hidden text-forest">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="about" class="pt-32 pb-20 px-6 max-w-4xl mx-auto text-center">
+        <span class="text-leaf font-semibold tracking-widest uppercase text-sm mb-4 block">Welcome to my field notes</span>
+        <h1 class="font-serif text-5xl md:text-6xl text-forest mb-6 leading-tight">
+            Observing the vibrant beauty <br> of the natural world.
+        </h1>
+        <p class="text-lg text-ink/80 leading-relaxed max-w-2xl mx-auto font-light">
+            A lively collection of watercolor sketches, botanical observations, and thoughts gathered from walks in the woods, along the coasts, and through the mountains.
+        </p>
+    </section>
+
+    <!-- Masonry Gallery Section -->
+    <section id="gallery" class="py-20 px-6 bg-white/60 border-t border-leaf/10">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-serif text-3xl text-forest mb-10 text-center">Sketchbook Pages</h2>
+            
+            <div class="masonry-grid">
+                <!-- Gallery Item 1 -->
+                <div class="masonry-item img-hover-container overflow-hidden rounded-lg shadow-sm border border-leaf/20 bg-white p-2 pb-6">
+                    <div class="overflow-hidden rounded-md">
+                        <img src="https://placehold.co/600x800/bbf7d0/166534?text=Botanical+Sketch" alt="Botanical Sketch" class="w-full h-auto img-hover-zoom">
+                    </div>
+                    <p class="text-center mt-4 font-serif italic text-forest text-sm">Wildflowers of early Spring</p>
+                </div>
+                <!-- Gallery Item 2 -->
+                <div class="masonry-item img-hover-container overflow-hidden rounded-lg shadow-sm border border-leaf/20 bg-white p-2 pb-6">
+                    <div class="overflow-hidden rounded-md">
+                        <img src="https://placehold.co/600x450/fef08a/854d0e?text=Bird+Study" alt="Bird Study" class="w-full h-auto img-hover-zoom">
+                    </div>
+                    <p class="text-center mt-4 font-serif italic text-forest text-sm">Sparrow watercolor study</p>
+                </div>
+                <!-- Gallery Item 3 -->
+                <div class="masonry-item img-hover-container overflow-hidden rounded-lg shadow-sm border border-leaf/20 bg-white p-2 pb-6">
+                    <div class="overflow-hidden rounded-md">
+                        <img src="https://placehold.co/600x700/a7f3d0/065f46?text=Pine+Cone" alt="Pine Cone Sketch" class="w-full h-auto img-hover-zoom">
+                    </div>
+                    <p class="text-center mt-4 font-serif italic text-forest text-sm">Fallen pine cone details</p>
+                </div>
+                <!-- Gallery Item 4 -->
+                <div class="masonry-item img-hover-container overflow-hidden rounded-lg shadow-sm border border-leaf/20 bg-white p-2 pb-6">
+                    <div class="overflow-hidden rounded-md">
+                        <img src="https://placehold.co/600x900/fed7aa/c2410c?text=Autumn+Leaves" alt="Autumn Leaves" class="w-full h-auto img-hover-zoom">
+                    </div>
+                    <p class="text-center mt-4 font-serif italic text-forest text-sm">Color transitions in Maple</p>
+                </div>
+                <!-- Gallery Item 5 -->
+                <div class="masonry-item img-hover-container overflow-hidden rounded-lg shadow-sm border border-leaf/20 bg-white p-2 pb-6">
+                    <div class="overflow-hidden rounded-md">
+                        <img src="https://placehold.co/600x550/86efac/14532d?text=Fern+Frond" alt="Fern" class="w-full h-auto img-hover-zoom">
+                    </div>
+                    <p class="text-center mt-4 font-serif italic text-forest text-sm">Unfurling fern frond</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journal Entries Section -->
+    <section id="entries" class="py-20 px-6 max-w-6xl mx-auto">
+        <h2 class="font-serif text-3xl text-forest mb-8 text-center">Recent Entries</h2>
+        
+        <!-- Category Filter -->
+        <div class="flex justify-center space-x-4 mb-12" id="filter-buttons">
+            <button class="filter-btn active px-4 py-2 rounded-full bg-forest text-white font-medium text-sm shadow-sm transition-all" data-filter="all">All</button>
+            <button class="filter-btn px-4 py-2 rounded-full bg-white text-forest border border-forest hover:bg-leaf hover:text-white hover:border-leaf font-medium text-sm shadow-sm transition-all" data-filter="nature">Nature (자연)</button>
+            <button class="filter-btn px-4 py-2 rounded-full bg-white text-forest border border-forest hover:bg-leaf hover:text-white hover:border-leaf font-medium text-sm shadow-sm transition-all" data-filter="travel">Travel (여행)</button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="entries-grid">
+            
+            <!-- Entry Card 1 -->
+            <article class="entry-card bg-white rounded-xl shadow-soft p-6 border border-leaf/20 hover:border-leaf/60 transition-all duration-300 flex flex-col h-full" data-category="nature">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-xs font-bold text-leaf tracking-wider uppercase">Oct 24, 2026</span>
+                    <span class="text-xs font-medium text-earth flex items-center">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        Eulsukdo, Busan
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-3">Birdwatching at Eulsukdo</h3>
+                <img src="https://placehold.co/800x400/bbf7d0/166534?text=Eulsukdo+Birds" alt="Birds" class="w-full h-32 object-cover rounded-md mb-4">
+                <p class="text-sm text-ink/80 leading-relaxed flex-grow">
+                    The migratory birds have started to arrive. I spent the afternoon at Eulsukdo Eco Park with my binoculars and sketchbook. The vibrant greens of the reeds contrasting with the lively movement of the waterbirds made for perfect watercolor subjects.
+                </p>
+                <a href="#" class="mt-6 text-forest text-sm font-semibold hover:text-leaf inline-flex items-center group">
+                    Read full entry 
+                    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </article>
+
+            <!-- New Entry Card (Travel - Uzbekistan) -->
+            <article class="entry-card bg-white rounded-xl shadow-soft p-6 border border-leaf/20 hover:border-leaf/60 transition-all duration-300 flex flex-col h-full" data-category="travel">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-xs font-bold text-leaf tracking-wider uppercase">Oct 10, 2026</span>
+                    <span class="text-xs font-medium text-earth flex items-center">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        Uzbekistan
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-3">7 Days in Tashkent & Samarkand</h3>
+                <img src="https://placehold.co/800x400/fcd34d/b45309?text=Uzbekistan+Journey" alt="Uzbekistan" class="w-full h-32 object-cover rounded-md mb-4">
+                <p class="text-sm text-ink/80 leading-relaxed flex-grow">
+                    An unforgettable 7-day journey exploring the deep history of Tashkent and Samarkand. I sketched intricate tile work at historical sites and had the absolute joy of being invited to a vibrant local wedding. The colors and hospitality were truly inspiring.
+                </p>
+                <a href="#" class="mt-6 text-forest text-sm font-semibold hover:text-leaf inline-flex items-center group">
+                    Read full entry 
+                    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </article>
+
+            <!-- Entry Card 2 -->
+            <article class="entry-card bg-white rounded-xl shadow-soft p-6 border border-leaf/20 hover:border-leaf/60 transition-all duration-300 flex flex-col h-full" data-category="nature">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-xs font-bold text-leaf tracking-wider uppercase">Oct 18, 2026</span>
+                    <span class="text-xs font-medium text-earth flex items-center">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        Dadaepo, Busan
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-3">Sunset at Dadaepo</h3>
+                <img src="https://placehold.co/800x400/fef08a/b45309?text=Sunset+Sketches" alt="Sunset" class="w-full h-32 object-cover rounded-md mb-4">
+                <p class="text-sm text-ink/80 leading-relaxed flex-grow">
+                    Dadaepo Beach offers the most incredible canvas at dusk. I tried to capture the transition from the bright, energetic afternoon sky to the deep, warm oranges and purples settling over the tidal flats.
+                </p>
+                <a href="#" class="mt-6 text-forest text-sm font-semibold hover:text-leaf inline-flex items-center group">
+                    Read full entry 
+                    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </article>
+            
+            <!-- New Entry Card (Travel - Museum) -->
+            <article class="entry-card bg-white rounded-xl shadow-soft p-6 border border-leaf/20 hover:border-leaf/60 transition-all duration-300 flex flex-col h-full" data-category="travel">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-xs font-bold text-leaf tracking-wider uppercase">Oct 05, 2026</span>
+                    <span class="text-xs font-medium text-earth flex items-center">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        Seoul, Korea
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-3">Greek & Roman Echoes at NMK</h3>
+                <img src="https://placehold.co/800x400/e5e7eb/374151?text=Museum+Exhibits" alt="Museum" class="w-full h-32 object-cover rounded-md mb-4">
+                <p class="text-sm text-ink/80 leading-relaxed flex-grow">
+                    A fascinating visit to the National Museum of Korea. The special exhibit on Greek and Roman civilization was breathtaking. I spent hours drawing studies of marble sculptures, marveling at the timeless human expression captured in stone.
+                </p>
+                <a href="#" class="mt-6 text-forest text-sm font-semibold hover:text-leaf inline-flex items-center group">
+                    Read full entry 
+                    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </article>
+
+            <!-- Entry Card 3 -->
+            <article class="entry-card bg-white rounded-xl shadow-soft p-6 border border-leaf/20 hover:border-leaf/60 transition-all duration-300 flex flex-col h-full" data-category="nature">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-xs font-bold text-leaf tracking-wider uppercase">Sep 30, 2026</span>
+                    <span class="text-xs font-medium text-earth flex items-center">
+                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                        Studio
+                    </span>
+                </div>
+                <h3 class="font-serif text-xl text-forest mb-3">Notes from my hand-bound watercolor book</h3>
+                <img src="https://placehold.co/800x400/a7f3d0/065f46?text=Watercolor+Book" alt="Book" class="w-full h-32 object-cover rounded-md mb-4">
+                <p class="text-sm text-ink/80 leading-relaxed flex-grow">
+                    I recently finished binding a new journal using cold-pressed cotton paper. The texture holds the vibrant emerald and forest green pigments beautifully. Today I documented some pressed ferns and tested color swatches.
+                </p>
+                <a href="#" class="mt-6 text-forest text-sm font-semibold hover:text-leaf inline-flex items-center group">
+                    Read full entry 
+                    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-forest text-paper/90 py-12 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="font-serif text-2xl text-paper mb-4">Nature Journal</h2>
+            <p class="text-sm font-light mb-8 max-w-md mx-auto">Documenting the vibrant energy of nature. Step outside, breathe, and observe.</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <!-- Simple placeholder icons -->
+                <a href="#" class="hover:text-leaf transition-colors font-semibold">Instagram</a>
+                <a href="#" class="hover:text-leaf transition-colors font-semibold">Email</a>
+            </div>
+            <p class="text-xs opacity-80">&copy; 2026 Nature Journal. Created with care.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Filter functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const entryCards = document.querySelectorAll('.entry-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active button styles
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-forest', 'text-white');
+                        b.classList.add('bg-white', 'text-forest');
+                    });
+                    btn.classList.remove('bg-white', 'text-forest');
+                    btn.classList.add('bg-forest', 'text-white');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    // Filter cards with smooth visual transition
+                    entryCards.forEach(card => {
+                        card.style.transition = 'opacity 0.3s ease';
+                        
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300); // Wait for opacity transition before hiding
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
