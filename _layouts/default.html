@@ -25,8 +25,11 @@
         .profile-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.5; }
         .nav-menu { border-top: 1px solid var(--border-color); padding-top: 20px; text-align: left; }
         .nav-title { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; }
-        .filter-btn { display: block; width: 100%; padding: 10px 15px; margin-bottom: 6px; background: transparent; border: none; border-radius: 6px; text-align: left; font-family: inherit; font-size: 0.95rem; color: var(--text-main); cursor: pointer; text-decoration: none; transition: all 0.2s; }
-        .filter-btn:hover { background-color: rgba(46, 139, 87, 0.1); color: var(--accent-color); font-weight: 500; }
+        .filter-btn { display: block; width: 100%; padding: 10px 15px; margin-bottom: 6px; background: transparent; border: none; border-radius: 6px; text-align: left; font-family: inherit; font-size: 0.95rem; color: var(--text-main); cursor: pointer; transition: all 0.2s; }
+        .filter-btn:hover, .filter-btn.active { background-color: rgba(46, 139, 87, 0.1); color: var(--accent-color); font-weight: 500; }
+        .sub-menu { padding-left: 15px; display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; }
+        .sub-btn { display: block; width: 100%; padding: 7px 12px; background: transparent; border: none; border-radius: 6px; text-align: left; font-family: inherit; font-size: 0.9rem; color: var(--text-muted); cursor: pointer; transition: all 0.2s; }
+        .sub-btn:hover, .sub-btn.active { background-color: rgba(46, 139, 87, 0.1); color: var(--accent-color); font-weight: 500; }
         .main-content { display: flex; flex-direction: column; gap: 24px; }
         .blog-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
@@ -46,16 +49,53 @@
             <div class="profile-name">{{ site.title }}</div>
             <div class="profile-desc">{{ site.description }}</div>
             <div class="nav-menu">
-                <div class="nav-title">Menu</div>
-                <a href="{{ '/' | relative_url }}" class="filter-btn">🌱 홈으로 가기</a>
+                <div class="nav-title">카테고리</div>
+                <button class="filter-btn active" onclick="filterEntries('all')">🌱 전체 글 보기</button>
+                <button class="filter-btn" onclick="filterEntries('nature')">🌿 Nature (자연)</button>
+                <button class="filter-btn" onclick="filterEntries('travel')">✈️ Travel (여행 전체)</button>
+                <div class="sub-menu">
+                    <button class="sub-btn" onclick="filterEntries('travel', 'domestic')">└ 🇰🇷 국내</button>
+                    <button class="sub-btn" onclick="filterEntries('travel', 'overseas')">└ 🌍 국외</button>
+                </div>
             </div>
         </aside>
-        <main class="main-content">
+        <main class="main-content" id="entryList">
             {{ content }}
             <footer class="footer">
                 <p>&copy; 2026 초록빛 기록장. All rights reserved.</p>
             </footer>
         </main>
     </div>
+
+    <script>
+        function filterEntries(category, subcategory = null) {
+            const cards = document.querySelectorAll('.blog-card');
+            const allBtns = document.querySelectorAll('.filter-btn, .sub-btn');
+
+            allBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                const cardCat = (card.dataset.category || '').toLowerCase();
+                const cardSub = (card.dataset.subcategory || '').toLowerCase();
+
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else if (subcategory) {
+                    if (cardCat === category && cardSub === subcategory) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                } else {
+                    if (cardCat === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
