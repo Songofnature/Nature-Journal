@@ -3,312 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nature Journal | My Observations</title>
-    <!-- Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'paper': '#FDFBF7',      /* Warm off-white */
-                        'leaf': '#10B981',       /* Vibrant emerald/leaf green */
-                        'forest': '#15803D',     /* Vibrant forest green */
-                        'earth': '#D97706',      /* Warm earthy tone */
-                        'ink': '#064E3B',        /* Very dark green-black for text */
-                    },
-                    fontFamily: {
-                        'serif': ['"Playfair Display"', 'serif'],
-                        'sans': ['"Inter"', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
-                    }
-                }
+    <title>초록빛 기록소 | 네이쳐 & 트래블 저널</title>
+    <!-- 구글 폰트 (Pretendard 스타일의 깔끔한 한글 폰트 적용) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1b4d3e; /* 깊고 싱그러운 포레스트 그린 */
+            --accent-color: #2e8b57;  /* 에메랄드 리프 그린 */
+            --bg-color: #f7f9f6;      /* 아주 연한 자연광 바탕색 */
+            --card-bg: #ffffff;
+            --text-main: #2c3e35;
+            --text-muted: #6c7a72;
+            --border-color: #e2e8e4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        /* 전체 레이아웃 (블로그형 2단 구조) */
+        .blog-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 850px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+                margin: 20px auto;
             }
         }
-    </script>
-    <style>
-        /* Subtle paper texture background */
-        body {
-            background-color: #FDFBF7;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            color: #2C352D;
+
+        /* 왼쪽: 프로필 & 메뉴 사이드바 */
+        .sidebar {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px 20px;
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            text-align: center;
         }
 
-        /* Masonry Gallery Styles */
-        .masonry-grid {
-            column-count: 1;
-            column-gap: 1.5rem;
-        }
-        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
-        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
-        
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
+        .profile-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
         }
 
-        /* Smooth scrolling */
-        html { scroll-behavior: smooth; }
-        
-        /* Image hover effect */
-        .img-hover-zoom {
-            transition: transform 0.5s ease;
+        .profile-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-color);
         }
-        .img-hover-container:hover .img-hover-zoom {
-            transform: scale(1.03);
+
+        .profile-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .nav-menu {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            text-align: left;
+        }
+
+        .nav-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            margin-bottom: 6px;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            text-align: left;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: rgba(46, 139, 87, 0.1);
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* 오른쪽: 메인 콘텐츠 (글 목록) */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .blog-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .card-category {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background-color: rgba(46, 139, 87, 0.1);
+            color: var(--accent-color);
+        }
+
+        .card-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .card-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .card-body {
+            font-size: 0.98rem;
+            color: #444;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        .card-footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* 푸터 저작권 */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            grid-column: 1 / -1;
         }
     </style>
 </head>
-<body class="font-sans antialiased text-ink">
+<body>
 
-    <!-- Header / Navigation -->
-    <header class="fixed w-full top-0 bg-paper/90 backdrop-blur-sm z-50 border-b border-leaf/20">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="font-serif text-2xl text-forest tracking-wide font-semibold">
-                Nature Journal
-            </a>
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-forest">
-                <a href="#about" class="hover:text-leaf transition-colors">About</a>
-                <a href="#gallery" class="hover:text-leaf transition-colors">Gallery</a>
-                <a href="#entries" class="hover:text-leaf transition-colors">Entries</a>
-            </nav>
-            <!-- Mobile Menu Button (visual only for mockup) -->
-            <button class="md:hidden text-forest">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="about" class="pt-32 pb-20 px-6 max-w-4xl mx-auto text-center">
-        <span class="text-leaf font-semibold tracking-widest uppercase text-sm mb-4 block">Welcome to my field notes</span>
-        <h1 class="font-serif text-5xl md:text-6xl text-forest mb-6 leading-tight">
-            Observing the vibrant beauty <br> of the natural world.
-        </h1>
-        <p class="text-lg text-ink/80 leading-relaxed max-w-2xl mx-auto font-light">
-            A lively collection of watercolor sketches, botanical observations, and thoughts gathered from walks in the woods, along the coasts, and through the mountains.
-        </p>
-    </section>
-
-    <!-- Masonry Gallery Section -->
-    <section id="gallery" class="py-20 px-6 bg-white/60 border-t border-leaf/10">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="font-serif text-3xl text-forest mb-10 text-center">Sketchbook Pages</h2>
-            
-            <div class="masonry-grid">
-                <!-- Gallery Item 1 -->
-                <div class="masonry-item img-hover-container overflow-hidden rounded-lg shadow-sm border border-leaf/20 bg-white p-2 pb-6">
-                    <div class="overflow-hidden rounded-md">
-                        <img src="https://placehold.co/600x800/bbf7d0/166534?text=Botanical+Sketch" alt="Botanical Sketch" class="w-full h-auto img-hover-zoom">
-                    </div>
-                    <p class="text-center mt-4 font-serif italic text-forest text-sm">Wildflowers of early Spring</p>
-                </div>
-                <!-- Gallery Item 2 -->
-                <div class="masonry-item img-hover-container overflow-hidden rounded-lg shadow-sm border border-leaf/20 bg-white p-2 pb-6">
-                    <div class="overflow-hidden rounded-md">
-                        <img src="https://placehold.co/600x450/fef08a/854d0e?text=Bird+Study" alt="Bird Study" class="w-full h-auto img-hover-zoom">
-                    </div>
-                    <p class="text-center mt-4 font-serif italic text-forest text-sm">Sparrow watercolor study</p>
-                </div>
-                <!-- Gallery Item 3 -->
-                <div class="masonry-item img-hover-container overflow-hidden rounded-lg shadow-sm border border-leaf/20 bg-white p-2 pb-6">
-                    <div class="overflow-hidden rounded-md">
-                        <img src="https://placehold.co/600x700/a7f3d0/065f46?text=Pine+Cone" alt="Pine Cone Sketch" class="w-full h-auto img-hover-zoom">
-                    </div>
-                    <p class="text-center mt-4 font-serif italic text-forest text-sm">Fallen pine cone details</p>
-                </div>
-                <!-- Gallery Item 4 -->
-                <div class="masonry-item img-hover-container overflow-hidden rounded-lg shadow-sm border border-leaf/20 bg-white p-2 pb-6">
-                    <div class="overflow-hidden rounded-md">
-                        <img src="https://placehold.co/600x900/fed7aa/c2410c?text=Autumn+Leaves" alt="Autumn Leaves" class="w-full h-auto img-hover-zoom">
-                    </div>
-                    <p class="text-center mt-4 font-serif italic text-forest text-sm">Color transitions in Maple</p>
-                </div>
-                <!-- Gallery Item 5 -->
-                <div class="masonry-item img-hover-container overflow-hidden rounded-lg shadow-sm border border-leaf/20 bg-white p-2 pb-6">
-                    <div class="overflow-hidden rounded-md">
-                        <img src="https://placehold.co/600x550/86efac/14532d?text=Fern+Frond" alt="Fern" class="w-full h-auto img-hover-zoom">
-                    </div>
-                    <p class="text-center mt-4 font-serif italic text-forest text-sm">Unfurling fern frond</p>
-                </div>
+    <div class="blog-container">
+        <!-- 사이드바 (프로필 및 카테고리) -->
+        <aside class="sidebar">
+            <div class="profile-img">🌿</div>
+            <div class="profile-name">초록빛 기록장</div>
+            <div class="profile-desc">
+                자연의 생명력과 일상의 여정을 수채화와 글귀로 고스란히 담아내는 공간입니다.
             </div>
-        </div>
-    </section>
-
-    <!-- Journal Entries Section -->
-    <section id="entries" class="py-20 px-6 max-w-6xl mx-auto">
-        <h2 class="font-serif text-3xl text-forest mb-8 text-center">Recent Entries</h2>
-        
-        <!-- Category Filter -->
-        <div class="flex justify-center space-x-4 mb-12" id="filter-buttons">
-            <button class="filter-btn active px-4 py-2 rounded-full bg-forest text-white font-medium text-sm shadow-sm transition-all" data-filter="all">All</button>
-            <button class="filter-btn px-4 py-2 rounded-full bg-white text-forest border border-forest hover:bg-leaf hover:text-white hover:border-leaf font-medium text-sm shadow-sm transition-all" data-filter="nature">Nature (자연)</button>
-            <button class="filter-btn px-4 py-2 rounded-full bg-white text-forest border border-forest hover:bg-leaf hover:text-white hover:border-leaf font-medium text-sm shadow-sm transition-all" data-filter="travel">Travel (여행)</button>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="entries-grid">
             
-            <!-- Entry Card 1 -->
-            <article class="entry-card bg-white rounded-xl shadow-soft p-6 border border-leaf/20 hover:border-leaf/60 transition-all duration-300 flex flex-col h-full" data-category="nature">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-xs font-bold text-leaf tracking-wider uppercase">Oct 24, 2026</span>
-                    <span class="text-xs font-medium text-earth flex items-center">
-                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                        Eulsukdo, Busan
-                    </span>
-                </div>
-                <h3 class="font-serif text-xl text-forest mb-3">Birdwatching at Eulsukdo</h3>
-                <img src="https://placehold.co/800x400/bbf7d0/166534?text=Eulsukdo+Birds" alt="Birds" class="w-full h-32 object-cover rounded-md mb-4">
-                <p class="text-sm text-ink/80 leading-relaxed flex-grow">
-                    The migratory birds have started to arrive. I spent the afternoon at Eulsukdo Eco Park with my binoculars and sketchbook. The vibrant greens of the reeds contrasting with the lively movement of the waterbirds made for perfect watercolor subjects.
-                </p>
-                <a href="#" class="mt-6 text-forest text-sm font-semibold hover:text-leaf inline-flex items-center group">
-                    Read full entry 
-                    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-
-            <!-- New Entry Card (Travel - Uzbekistan) -->
-            <article class="entry-card bg-white rounded-xl shadow-soft p-6 border border-leaf/20 hover:border-leaf/60 transition-all duration-300 flex flex-col h-full" data-category="travel">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-xs font-bold text-leaf tracking-wider uppercase">Oct 10, 2026</span>
-                    <span class="text-xs font-medium text-earth flex items-center">
-                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                        Uzbekistan
-                    </span>
-                </div>
-                <h3 class="font-serif text-xl text-forest mb-3">7 Days in Tashkent & Samarkand</h3>
-                <img src="https://placehold.co/800x400/fcd34d/b45309?text=Uzbekistan+Journey" alt="Uzbekistan" class="w-full h-32 object-cover rounded-md mb-4">
-                <p class="text-sm text-ink/80 leading-relaxed flex-grow">
-                    An unforgettable 7-day journey exploring the deep history of Tashkent and Samarkand. I sketched intricate tile work at historical sites and had the absolute joy of being invited to a vibrant local wedding. The colors and hospitality were truly inspiring.
-                </p>
-                <a href="#" class="mt-6 text-forest text-sm font-semibold hover:text-leaf inline-flex items-center group">
-                    Read full entry 
-                    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-
-            <!-- Entry Card 2 -->
-            <article class="entry-card bg-white rounded-xl shadow-soft p-6 border border-leaf/20 hover:border-leaf/60 transition-all duration-300 flex flex-col h-full" data-category="nature">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-xs font-bold text-leaf tracking-wider uppercase">Oct 18, 2026</span>
-                    <span class="text-xs font-medium text-earth flex items-center">
-                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                        Dadaepo, Busan
-                    </span>
-                </div>
-                <h3 class="font-serif text-xl text-forest mb-3">Sunset at Dadaepo</h3>
-                <img src="https://placehold.co/800x400/fef08a/b45309?text=Sunset+Sketches" alt="Sunset" class="w-full h-32 object-cover rounded-md mb-4">
-                <p class="text-sm text-ink/80 leading-relaxed flex-grow">
-                    Dadaepo Beach offers the most incredible canvas at dusk. I tried to capture the transition from the bright, energetic afternoon sky to the deep, warm oranges and purples settling over the tidal flats.
-                </p>
-                <a href="#" class="mt-6 text-forest text-sm font-semibold hover:text-leaf inline-flex items-center group">
-                    Read full entry 
-                    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-            
-            <!-- New Entry Card (Travel - Museum) -->
-            <article class="entry-card bg-white rounded-xl shadow-soft p-6 border border-leaf/20 hover:border-leaf/60 transition-all duration-300 flex flex-col h-full" data-category="travel">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-xs font-bold text-leaf tracking-wider uppercase">Oct 05, 2026</span>
-                    <span class="text-xs font-medium text-earth flex items-center">
-                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                        Seoul, Korea
-                    </span>
-                </div>
-                <h3 class="font-serif text-xl text-forest mb-3">Greek & Roman Echoes at NMK</h3>
-                <img src="https://placehold.co/800x400/e5e7eb/374151?text=Museum+Exhibits" alt="Museum" class="w-full h-32 object-cover rounded-md mb-4">
-                <p class="text-sm text-ink/80 leading-relaxed flex-grow">
-                    A fascinating visit to the National Museum of Korea. The special exhibit on Greek and Roman civilization was breathtaking. I spent hours drawing studies of marble sculptures, marveling at the timeless human expression captured in stone.
-                </p>
-                <a href="#" class="mt-6 text-forest text-sm font-semibold hover:text-leaf inline-flex items-center group">
-                    Read full entry 
-                    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-
-            <!-- Entry Card 3 -->
-            <article class="entry-card bg-white rounded-xl shadow-soft p-6 border border-leaf/20 hover:border-leaf/60 transition-all duration-300 flex flex-col h-full" data-category="nature">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-xs font-bold text-leaf tracking-wider uppercase">Sep 30, 2026</span>
-                    <span class="text-xs font-medium text-earth flex items-center">
-                        <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                        Studio
-                    </span>
-                </div>
-                <h3 class="font-serif text-xl text-forest mb-3">Notes from my hand-bound watercolor book</h3>
-                <img src="https://placehold.co/800x400/a7f3d0/065f46?text=Watercolor+Book" alt="Book" class="w-full h-32 object-cover rounded-md mb-4">
-                <p class="text-sm text-ink/80 leading-relaxed flex-grow">
-                    I recently finished binding a new journal using cold-pressed cotton paper. The texture holds the vibrant emerald and forest green pigments beautifully. Today I documented some pressed ferns and tested color swatches.
-                </p>
-                <a href="#" class="mt-6 text-forest text-sm font-semibold hover:text-leaf inline-flex items-center group">
-                    Read full entry 
-                    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-            </article>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-forest text-paper/90 py-12 text-center">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="font-serif text-2xl text-paper mb-4">Nature Journal</h2>
-            <p class="text-sm font-light mb-8 max-w-md mx-auto">Documenting the vibrant energy of nature. Step outside, breathe, and observe.</p>
-            <div class="flex justify-center space-x-6 mb-8">
-                <!-- Simple placeholder icons -->
-                <a href="#" class="hover:text-leaf transition-colors font-semibold">Instagram</a>
-                <a href="#" class="hover:text-leaf transition-colors font-semibold">Email</a>
+            <div class="nav-menu">
+                <div class="nav-title">카테고리</div>
+                <button class="filter-btn active" onclick="filterEntries('all')">전체 글 보기</button>
+                <button class="filter-btn" onclick="filterEntries('nature')">🌱 Nature (자연)</button>
+                <button class="filter-btn" onclick="filterEntries('travel')">✈️ Travel (여행)</button>
             </div>
-            <p class="text-xs opacity-80">&copy; 2026 Nature Journal. Created with care.</p>
-        </div>
-    </footer>
+        </aside>
 
-    <!-- JavaScript for Filter functionality -->
+        <!-- 메인 글 목록 영역 -->
+        <main class="main-content" id="entryList">
+            
+            <!-- 글 1: Nature -->
+            <article class="blog-card" data-category="nature">
+                <div class="card-header">
+                    <span class="card-category">Nature</span>
+                    <span class="card-date">2026.06.12</span>
+                </div>
+                <h2 class="card-title">을숙도 생태공원의 여름 풍경과 새소리</h2>
+                <div class="card-meta">
+                    <span>📍 장소: 부산 을숙도 생태공원</span>
+                    <span>🎨 재료: 수채화 물감, 코튼북</span>
+                </div>
+                <div class="card-body">
+초록빛이 가장 진해지는 초여름, 을숙도를 찾았다. 강바람을 타고 스쳐 지나가는 풀잎 향기와 고요하게 수면 위를 스치는 새들의 날갯짓을 노트에 담아본다. 도시의 소음에서 벗어나 온전히 자연의 호흡에 귀 기울일 수 있었던 평화로운 시간.
+                </div>
+                <div class="card-footer">
+                    태그: #을숙도 #생태공원 #자연관찰 #수채화일지
+                </div>
+            </article>
+
+            <!-- 글 2: Nature -->
+            <article class="blog-card" data-category="nature">
+                <div class="card-header">
+                    <span class="card-category">Nature</span>
+                    <span class="card-date">2026.05.28</span>
+                </div>
+                <h2 class="card-title">다대포 해변의 황홀한 노을 기록</h2>
+                <div class="card-meta">
+                    <span>📍 장소: 부산 다대포 해수욕장</span>
+                    <span>🎨 재료: 펜 스케치, 워터브러시</span>
+                </div>
+                <div class="card-body">
+넓게 펼쳐진 갯벌 위로 붉게 물들어가는 낙조. 바닷물이 빠져나간 모래사장에 비친 하늘의 색감이 너무나 신비로웠다. 차분하게 가라앉는 저녁 공기 속에서 펜을 움직여 그날의 빛을 붙잡아 두려 애썼던 기록.
+                </div>
+                <div class="card-footer">
+                    태그: #다대포 #노을 #바다기록 #자연저널
+                </div>
+            </article>
+
+            <!-- 글 3: Travel -->
+            <article class="blog-card" data-category="travel">
+                <div class="card-header">
+                    <span class="card-category">Travel</span>
+                    <span class="card-date">2025.10.15</span>
+                </div>
+                <h2 class="card-title">우즈베키스탄 타슈켄트와 사마르칸트의 기록</h2>
+                <div class="card-meta">
+                    <span>📍 장소: 우즈베키스탄 사마르칸트</span>
+                    <span>🎨 재료: 여권, 카메라, 드로잉 북</span>
+                </div>
+                <div class="card-body">
+푸른 타일의 웅장한 역사 유적들과 낯선 곳에서 마주친 따뜻한 사람들. 사마르칸트의 골목길을 거닐며 느꼈던 이국적인 공기와, 현지 결혼식에서 경험했던 활기차고 깊은 환대의 기억들을 오래도록 기억하고 싶어 남기는 페이지.
+                </div>
+                <div class="card-footer">
+                    태그: #우즈베키스탄 #사마르칸트 #세계여행 #기록
+                </div>
+            </article>
+
+            <!-- 글 4: Travel -->
+            <article class="blog-card" data-category="travel">
+                <div class="card-header">
+                    <span class="card-category">Travel</span>
+                    <span class="card-date">2025.05.10</span>
+                </div>
+                <h2 class="card-title">서울 국립중앙박물관에서 마주한 고대의 숨결</h2>
+                <div class="card-meta">
+                    <span>📍 장소: 서울 용산 국립중앙박물관</span>
+                    <span>🎨 재료: 연필 스케치, 관람 메모</span>
+                </div>
+                <div class="card-body">
+그리스 로마 문명 전시를 보기 위해 찾았던 서울 국립중앙박물관. 오랜 세월을 건너온 조각상들의 유려한 선과 고요한 전시실의 분위기가 깊은 여운을 남겼다. 역사와 예술이 주는 묵직한 감동을 차분히 정리해 본 날.
+                </div>
+                <div class="card-footer">
+                    태그: #국립중앙박물관 #서울여행 #전시관람 #유물스케치
+                </div>
+            </article>
+
+            <footer class="footer">
+                <p>&copy; 2026 초록빛 기록장. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const entryCards = document.querySelectorAll('.entry-card');
+        // 카테고리 필터링 기능 (블로그 글 목록 갱신)
+        function filterEntries(category) {
+            const cards = document.querySelectorAll('.blog-card');
+            const buttons = document.querySelectorAll('.filter-btn');
 
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Update active button styles
-                    filterBtns.forEach(b => {
-                        b.classList.remove('bg-forest', 'text-white');
-                        b.classList.add('bg-white', 'text-forest');
-                    });
-                    btn.classList.remove('bg-white', 'text-forest');
-                    btn.classList.add('bg-forest', 'text-white');
+            // 버튼 활성화 상태 변경
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
 
-                    const filterValue = btn.getAttribute('data-filter');
-
-                    // Filter cards with smooth visual transition
-                    entryCards.forEach(card => {
-                        card.style.transition = 'opacity 0.3s ease';
-                        
-                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                            card.style.display = 'flex';
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                            }, 10);
-                        } else {
-                            card.style.opacity = '0';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300); // Wait for opacity transition before hiding
-                        }
-                    });
-                });
+            // 카드 보이기/숨기기
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
             });
-        });
+        }
     </script>
 </body>
 </html>
